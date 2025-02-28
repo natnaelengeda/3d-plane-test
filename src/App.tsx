@@ -1,17 +1,26 @@
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
+
+// Three js
 import { Canvas } from "@react-three/fiber";
 import { Environment, OrbitControls } from "@react-three/drei";
 
 // 3D Model
-import BoengPlane from "../public/BoengPlane";
+// import BoengPlane from "../public/BoengPlane";
+import BoengPlane from "./assets/3D/BoengPlane";
+
+// Components
 import { Marker } from "./components/Marker";
+import LoadingScreen from "./components/LoadingScreen";
 
 // Styles
 import "./App.css";
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   return (
     <>
+      {isLoading && <LoadingScreen />}
       <Canvas 
         camera={{ 
           position: [-5, 7, -5], // Positioned above and behind for top-down angled view
@@ -32,6 +41,7 @@ export default function App() {
           <BoengPlane 
             position={[0, 0, 0]}
             rotation={[0,0, 0]} // Tilted slightly up and rotated 180°
+            onLoad={() => setIsLoading(false)}
           />
           
           {/* Tail */}
@@ -65,9 +75,6 @@ export default function App() {
         </Suspense>
         <Environment preset="night" /> {/* Changed to night to match the dark background */}
       </Canvas>
-      <div>
-        <h1>Earth</h1>
-      </div>
     </>
   )
 }

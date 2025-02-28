@@ -7,16 +7,23 @@ Source: https://sketchfab.com/3d-models/boeing-777-300er-model-322e7961d2024bba8
 Title: Boeing 777-300ER Model
 */
 
-import React, { useRef } from "react"
+import React, { useRef, useEffect } from "react"
 import { useGLTF } from "@react-three/drei"
 import * as THREE from 'three';
 
 // Preload the GLTF model at the Top
 useGLTF.preload("/BoengPlane.gltf")
 
-export default function BoengPlane(props) {
+export default function BoengPlane({ onLoad, ...props }) {
   const { nodes, materials } = useGLTF("/BoengPlane.gltf")
   const groupRef = useRef();
+
+  // Call onLoad when the model is ready
+  useEffect(() => {
+    if (nodes && materials && onLoad) {
+      onLoad();
+    }
+  }, [nodes, materials, onLoad]);
 
   return (
     <group ref={groupRef} {...props} dispose={null}>
