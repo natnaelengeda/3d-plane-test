@@ -7,14 +7,20 @@ Source: https://sketchfab.com/3d-models/boeing-777-300er-model-322e7961d2024bba8
 Title: Boeing 777-300ER Model
 */
 
-import React from "react"
+import React, { useRef } from "react"
 import { useGLTF } from "@react-three/drei"
+import * as THREE from 'three';
+
+// Preload the GLTF model at the Top
+useGLTF.preload("/BoengPlane.gltf")
 
 export default function BoengPlane(props) {
   const { nodes, materials } = useGLTF("/BoengPlane.gltf")
+  const groupRef = useRef();
+
   return (
-    <group {...props} dispose={null}>
-      <group scale={0.01}>
+    <group ref={groupRef} {...props} dispose={null}>
+      <group scale={0.012}>
         <group
           position={[-10.121, 27.695, 3.415]}
           scale={[53.882, 2.414, 53.882]}
@@ -1670,5 +1676,3 @@ export default function BoengPlane(props) {
     </group>
   )
 }
-
-useGLTF.preload("/BoengPlane.gltf")
