@@ -1,6 +1,6 @@
 body {
-  background-color: gray;
-  background: url("bg.jpeg");
+  background: linear-gradient(to right, #614385, #516395);
+  /* background: url("/bg.jpeg"); */
   background-repeat: no-repeat;
   background-size: cover;
 
