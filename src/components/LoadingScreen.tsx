@@ -1,4 +1,3 @@
-import React from 'react';
 
 const LoadingScreen = () => {
   return (
@@ -16,8 +15,7 @@ const LoadingScreen = () => {
         justifyContent: 'center',
         color: 'white',
         zIndex: 1000,
-      }}
-    >
+      }}>
       <div
         style={{
           width: '50px',
@@ -27,8 +25,7 @@ const LoadingScreen = () => {
           borderTopColor: 'white',
           animation: 'spin 1s ease-in-out infinite',
           marginBottom: '20px',
-        }}
-      />
+        }} />
       <h2 style={{ margin: '10px 0' }}>Loading 3D Model</h2>
       <p style={{ margin: '0', opacity: 0.8 }}>Please wait...</p>
 
